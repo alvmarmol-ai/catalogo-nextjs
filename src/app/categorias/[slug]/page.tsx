@@ -15,9 +15,8 @@ export default async function CategoriaPage({ params }: PageProps) {
       <h1 className="text-3xl font-bold mb-6 capitalize">Categoría: {slug}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {juegos?.map((juego: Juego) => (
-          <div key={juego.id} className="border p-4 rounded bg-white">
+          <div key={juego.id} className="border p-4 rounded bg-white shadow">
             <h2 className="text-xl font-bold">{juego.titulo}</h2>
-            <p className="text-gray-600 my-2">{juego.descripcion}</p>
           </div>
         ))}
       </div>
