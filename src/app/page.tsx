@@ -1,10 +1,9 @@
 import Link from 'next/link';
 import { supabase, Juego } from '@/lib/supabase';
 
-export const revalidate = 0; // Para obtener datos siempre actualizados desde Supabase
+export const revalidate = 0; // Para obtener datos en tiempo real desde Supabase
 
 export default async function HomePage() {
-  // Leemos la lista de videojuegos desde la tabla de Supabase
   const { data: juegos, error } = await supabase.from('juegos').select('*');
 
   if (error) {
@@ -23,7 +22,7 @@ export default async function HomePage() {
           🎮 Catálogo de Videojuegos
         </h1>
         <p className="text-gray-600">
-          Explora los mejores títulos consultados directamente desde Supabase.
+          Explora los títulos consultados en tiempo real desde Supabase.
         </p>
       </header>
 
