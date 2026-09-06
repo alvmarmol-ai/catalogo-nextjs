@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { supabase, Juego } from '@/lib/supabase';
 
-export const revalidate = 0; // Para obtener datos en tiempo real desde Supabase
+export const revalidate = 0;
 
 export default async function HomePage() {
   const { data: juegos, error } = await supabase.from('juegos').select('*');
@@ -29,13 +29,19 @@ export default async function HomePage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {juegos?.map((juego: Juego) => (
           <div key={juego.id} className="border rounded-lg overflow-hidden shadow-lg bg-white flex flex-col justify-between">
-            {juego.imagen_url && (
+            
+            {juego.imagen_url ? (
               <img 
                 src={juego.imagen_url} 
                 alt={juego.titulo} 
-                className="w-full h-48 object-cover" 
+                className="w-full h-48 object-cover"
               />
+            ) : (
+              <div className="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">
+                Sin Imagen
+              </div>
             )}
+
             <div className="p-4 flex-1">
               <h2 className="text-xl font-bold mb-2 text-gray-900">{juego.titulo}</h2>
               <p className="text-sm text-gray-600 mb-4">
